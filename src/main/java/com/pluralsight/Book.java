@@ -77,12 +77,14 @@ public class Book {
     public void checkOut(String name) {
         if (isCheckedOut == false) {
 
-            checkedOutTo = name;
+            checkedOutTo = checkedOutTo;
             isCheckedOut = true;
 
             System.out.println(title + " is checked out to " + name);
         } else {
-            System.out.println(title + " is currently checked in to " + name);
+            System.out.print("");
+            System.out.print(title + " is currently checked in to " + name);
+            System.out.print("");
         }
     }
 
@@ -92,7 +94,9 @@ public class Book {
             checkedOutTo = "";
             isCheckedOut = false;
 
-            System.out.println(title + " has been checked in. Thank you!");
+            System.out.print("");
+            System.out.print(title + " has been checked in. Thank you!");
+            System.out.print("");
         } else {
             System.out.println(title + " is not checked out.");
         }

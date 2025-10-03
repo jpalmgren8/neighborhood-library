@@ -7,8 +7,6 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
 
-        String name = "";
-
         Book[] bookInventory = {
                 new Book(1,"9780061120084","To Kill a Mockingbird",false,""),
                 new Book(2,"9780451524935","1984",false,""),
@@ -32,7 +30,7 @@ public class Main {
                 new Book(20,"9780375842207","The Book Thief",false,""),
         };
 
-        System.out.println("======[Neighborhood Library]======");
+        System.out.println("=====[Neighborhood Library]=====");
         System.out.println("");
 
         while(true) {
@@ -57,26 +55,58 @@ public class Main {
                     int selectAvailable = scan.nextInt();
                     scan.nextLine();
 
-                    // Currently stuck on having the user select a available book to check out
                     switch(selectAvailable) {
                         case 1:
                             System.out.print("Enter the id of the book you would like to check out: ");
                             int bookCheckOutSelect = scan.nextInt();
                             scan.nextLine();
+
+                            System.out.print("Enter your first and last name: ");
+                            String name = scan.nextLine();
+
+
+                            for (int i = 0; i < bookInventory.length; i++) {
+                                if (bookInventory[i].getId() == bookCheckOutSelect) {
+                                    bookInventory[i].checkOut(name);
+                                }
+                            }
                         case 2:
                             return;
                     }
                     break;
                 case 2:
+                    System.out.println("=====[Currently Checked Out Books]=====");
                     checkedOutBooks(bookInventory);
+                    System.out.println("Select one of the options below:");
+                    System.out.println("(C) Check in a book");
+                    System.out.println("(X) Return to main menu");
+
+                    System.out.print("Enter a character for the menu option: ");
+                    String bookCheckInSelect = scan.next();
+
+                    if (bookCheckInSelect.equals("C")) {
+                        System.out.print("Enter the id of the book you would like to check in: ");
+                        int checkedInBook = scan.nextInt();
+                        scan.nextLine();
+
+                        for (int i = 0; i < bookInventory.length; i++) {
+                            if (bookInventory[i].getId() == checkedInBook) {
+                                bookInventory[i].checkIn();
+                            }
+                        }
+                    } else if (bookCheckInSelect.equals("X")) {
+                        return;
+                    } else {
+                        System.out.print("Please enter the correct character!");
+                        return;
+                    }
+
                     break;
                 case 3:
                     System.exit(0);
                     scan.close();
             }
         }
-
-
     }
 
     public static void listAvailableBooks(Book[] bookInventory) {
@@ -94,10 +124,6 @@ public class Main {
             }
         }
     }
-
-
-
-
     }
 
 
