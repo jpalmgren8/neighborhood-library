@@ -32,7 +32,7 @@ public class Main {
                 new Book(20,"9780375842207","The Book Thief",false,""),
         };
 
-        System.out.println("=====[Neighborhood Library]=====");
+        System.out.println("======[Neighborhood Library]======");
         System.out.println("");
 
         while(true) {
